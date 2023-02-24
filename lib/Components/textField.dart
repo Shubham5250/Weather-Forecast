@@ -6,10 +6,11 @@ import '../constants.dart' as Constant;
 class textField extends StatelessWidget {
   final String text;
   final bool isPassword;
+  final Function(String) onChanged;
   const textField({
 
 
-  super.key, required this.text, required this.isPassword,
+  super.key, required this.text, required this.isPassword, required this.onChanged,
 
   });
 
@@ -19,6 +20,7 @@ class textField extends StatelessWidget {
       padding: EdgeInsets.all(15.0),
       child:
       TextField(
+        onChanged: onChanged,
         obscureText: isPassword,
         style: TextStyle(
           color: Constant.textSecondary,
