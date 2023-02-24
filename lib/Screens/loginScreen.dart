@@ -24,7 +24,29 @@ class _LogiunScreenState extends State<LoginScreen> {
 
           textField(text: "Password", isPassword: true),
            textField(text: "Mobile Number", isPassword: false),
-          TextButton(onPressed: (){}, child: Text('Login')),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(20.0),
+            child: Container(
+              color: Constant.textSecondary,
+              width: 180,
+              child: TextButton(
+                  style: TextButton.styleFrom(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                      side: BorderSide(
+                        width: 2,
+                        color: Constant.textBorder,
+
+                      )
+                    )
+                  ),
+                  onPressed: (){}, child: Text('Login',
+              style: TextStyle(
+                fontSize: 24.00,
+                color: Constant.textPrimary,
+              ),)),
+            ),
+          ),
           Expanded(
               child: Container()),
         ],
