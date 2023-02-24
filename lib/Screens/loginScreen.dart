@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../Components/textField.dart';
 import '../constants.dart' as Constant;
+import 'package:firebase_auth/firebase_auth.dart';
+import 'mainScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -13,9 +15,12 @@ class _LogiunScreenState extends State<LoginScreen> {
 
 
   late String email, password;
+  int myVar = 0;
 
   @override
   Widget build(BuildContext context) {
+
+    final auth = FirebaseAuth.instance;
     return Scaffold(
       backgroundColor: Constant.textPrimary,
       body: Column(
@@ -44,10 +49,13 @@ class _LogiunScreenState extends State<LoginScreen> {
                             width: 2,
                             color: Constant.textBorder,
                           ))),
-                  onPressed: () {
+                  onPressed: () async {
                     try{
                       final newUser =
-                      await _auth.
+                      await auth.signInWithEmailAndPassword(email: email, password: password );
+                      if(newUser != null && myVar != 0){
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MainScreen()));
+                      }
                     }catch(e){
 
                     }
