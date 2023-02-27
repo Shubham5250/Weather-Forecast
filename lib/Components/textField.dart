@@ -1,49 +1,50 @@
-
-
 import 'package:flutter/material.dart';
-import '../constants.dart' as Constant;
+import '../constants.dart' as Constants;
+
+
+
+
 
 class textField extends StatelessWidget {
   final String text;
   final bool isPassword;
-  final Function(String) onChanged;
+  final Function(String) onchanged;
+
+
   const textField({
-
-
-  super.key, required this.text, required this.isPassword, required this.onChanged,
-
+    super.key,
+    required this.text,
+    required this.isPassword, required this.onchanged,
   });
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(15.0),
-      child:
-      TextField(
-        onChanged: onChanged,
-        obscureText: isPassword,
+      padding: EdgeInsets.all(16.1),
+      child: TextField(
+        onChanged: onchanged,
         style: TextStyle(
-          color: Constant.textSecondary,
+            color: Constants.dayPrimary,
         ),
+        obscureText: isPassword,
         decoration: InputDecoration(
-          hintText: text,
-          hintStyle: TextStyle(
-            color: Constant.textSecondary,
-            fontWeight: FontWeight.w600,
-            fontSize: 20,
-            fontStyle: FontStyle.normal,
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-              color: Constant.textSecondary,
-              width: 3,
-              style: BorderStyle.solid,
+            hintText: text,
+            hintStyle: TextStyle(
+                color: Constants.dayPrimary,
+                fontWeight: FontWeight.w700,
+                fontStyle: FontStyle.italic,
+                fontSize: 20.0
+
             ),
-          ),
+            enabledBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                color: Constants.dayPrimary,
+                width: 1.8,
+                style: BorderStyle.solid,
+              ),
+            )
         ),
       ),
-
     );
   }
 }
-
