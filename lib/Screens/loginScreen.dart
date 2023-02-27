@@ -15,7 +15,7 @@ class _LogiunScreenState extends State<LoginScreen> {
 
 
   late String email, password;
-  int myVar = 0;
+  int myVar = 1;
 
   @override
   Widget build(BuildContext context) {
