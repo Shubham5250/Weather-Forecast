@@ -103,6 +103,7 @@ class ApiResponse with ChangeNotifier{
     tempType = weatherData['main'];
     tempDescp = weatherData['description'];
     icon = weatherData['icon'];
+    aqi = weatherData['aqi'];
 
     //getting city
     city = data['name'];
@@ -116,6 +117,8 @@ class ApiResponse with ChangeNotifier{
     temp = mainData['temp'];
     humidity = mainData['humidity'];
     maxTemp = mainData['temp_max'].toDouble();
+    minTemp = mainData['temp_min'].toDouble();
+
 
 
     // getting wind speed(m/s)
