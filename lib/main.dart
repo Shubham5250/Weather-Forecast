@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {   //build context helps to identify controller to build widgets
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
         home: LoginScreen()
     );
   }
