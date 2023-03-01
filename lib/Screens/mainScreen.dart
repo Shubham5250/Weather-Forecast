@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import '../constants.dart' as Constants;
 
@@ -16,17 +18,29 @@ class _MainScreenState extends State<MainScreen> {
         .size;
 
     return Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: NetworkImage('https://images.unsplash.com/photo-1516912481808-3406841bd33c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d2VhdGhlcnxlbnwwfHwwfHw%3D&w=1000&q=80'),
+          fit: BoxFit.cover,
+
+        )
+
+
+      ),
+
+
       child: Stack(
+
         alignment: Alignment.center,
-        children: [
-          Positioned(
+      children: [
+      Positioned(
             top: size.height * 0.1,
             child: Row(
               children: <Widget>[
                 Text('${Constants.apiInstance.city},',
                   style: TextStyle(
                   decoration: TextDecoration.none,
-                    color: Colors.orange,
+                    color: Colors.cyanAccent,
                     fontSize: 45,
                   ),
                 ),
@@ -57,7 +71,7 @@ class _MainScreenState extends State<MainScreen> {
             child: Text(
               '${Constants.apiInstance.temp}°c',
               style: TextStyle(
-                color: Colors.orange,
+                color: Colors.cyanAccent,
                 decoration: TextDecoration.none,
                 fontSize: 30,
               ),
@@ -132,7 +146,7 @@ class bottomWidget extends StatelessWidget {
         children: [
           Icon(
             icon,
-            color: Colors.orange,
+            color: Colors.cyanAccent,
           ),
           Text(
             name,

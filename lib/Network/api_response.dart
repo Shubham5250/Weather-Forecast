@@ -4,9 +4,6 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:intl/intl.dart';
 import 'package:untitled/constants.dart';
-
-import '../constants.dart';
-
 class SearchLocation{
 
   String key = apiKey; // openweathermap api key
@@ -55,7 +52,7 @@ class ApiResponse with ChangeNotifier{
   late double airSpeed; // Air Speed of the location
   late String tempType; // Current Weather type
   late int aqi; // Air quality Index
-  late String icon; // Icon of the current weather.jpeg
+  late String icon; // Icon of the current weather
   late String country; // name of the country
   late double maxTemp; // max Temp for the day
   late double minTemp; // min Temp for the day
@@ -74,7 +71,7 @@ class ApiResponse with ChangeNotifier{
         uri,
 
         //sub domain of the api
-        '/data/2.5/weather.jpeg',
+        '/data/2.5/weather',
 
         //declaring the query parameters
         {
@@ -97,7 +94,7 @@ class ApiResponse with ChangeNotifier{
     date = DateFormat.yMMMEd().format(dateTime);
 
     // getting temp description, icon
-    List weather = data['weather.jpeg'];
+    List weather = data['weather'];
     Map weatherData = weather[0];
     tempType = weatherData['main'];
     tempDescp = weatherData['description'];
@@ -115,8 +112,6 @@ class ApiResponse with ChangeNotifier{
     temp = mainData['temp'];
     humidity = mainData['humidity'];
     maxTemp = mainData['temp_max'].toDouble();
-    minTemp = mainData['temp_min'].toDouble();
-
 
 
     // getting wind speed(m/s)
