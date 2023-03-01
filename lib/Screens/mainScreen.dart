@@ -14,12 +14,11 @@ class _MainScreenState extends State<MainScreen> {
     Size size = MediaQuery
         .of(context)
         .size;
+
     return Container(
-      color: Constants.dayPrimary,
       child: Stack(
         alignment: Alignment.center,
         children: [
-
           Positioned(
             top: size.height * 0.1,
             child: Row(
@@ -33,15 +32,15 @@ class _MainScreenState extends State<MainScreen> {
                 ),
 
                 Text('${Constants.apiInstance.country}',
-                style: TextStyle(
-                  decoration: TextDecoration.none,
-                  color: Constants.textPrimary,
-                  fontSize: 35,
-                ),),
+                  style: TextStyle(
+                    decoration: TextDecoration.none,
+                    color: Constants.textPrimary,
+                    fontSize: 35,
+                  ),
+                ),
               ],
             ),
           ),
-
           Positioned(
             top: size.height * 0.17,
             child: Text(
@@ -109,7 +108,6 @@ class _MainScreenState extends State<MainScreen> {
           )
         ],
       ),
-
     );
   }
 }

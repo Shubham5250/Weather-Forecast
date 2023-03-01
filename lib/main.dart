@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {   //build context helps to identify controller to build widgets
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-        home: LoginScreen()
+        home: LoginScreen(),
+
     );
   }
 }

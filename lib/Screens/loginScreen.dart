@@ -5,6 +5,7 @@ import '../Components/textField.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'mainScreen.dart';
 import '../Network/Location.dart';
+import '../Network/api_response.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -26,8 +27,11 @@ class _LoginScreenState extends State<LoginScreen> {
   }
   void apiCall() async{
     var location = await determinePosition();
+
     myvar = await Constants.apiInstance.getLocation(
         location.latitude.toString(), location.longitude.toString());
+    print(location.latitude.toString());
+
   }
 
 
