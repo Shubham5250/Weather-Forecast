@@ -5,6 +5,8 @@ import '../Components/textField.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'mainScreen.dart';
 import '../Network/Location.dart';
+import '../Network/api_response.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -26,8 +28,11 @@ class _LoginScreenState extends State<LoginScreen> {
   }
   void apiCall() async{
     var location = await determinePosition();
+
     myvar = await Constants.apiInstance.getLocation(
         location.latitude.toString(), location.longitude.toString());
+    print(location.latitude.toString());
+
   }
 
 
@@ -40,9 +45,9 @@ class _LoginScreenState extends State<LoginScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Expanded(child: Container()),
           Expanded(
-              flex: 2,
+              child: Container()),
+          Expanded(
               child: textField(text: 'Email', isPassword: false,onchanged: (value){email = value;}),),
           Expanded(
             child: textField(text: 'Password', isPassword: true, onchanged: (value){password = value;}),),
@@ -65,12 +70,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 onPressed: () async {
 
+                  final prefs = await SharedPreferences.getInstance();
+                  prefs.setBool("isLoggedIn",true);
                   try{
                     final newUser =
                     await _auth.signInWithEmailAndPassword(email: email, password: password);
                     if (newUser.user != null && myvar !=0) {
                       Navigator.pushReplacement(
-                          context, MaterialPageRoute(builder: (context)  => MainScreen()));
+                          context, MaterialPageRoute(builder: (context)  => MainScreen(
+                      )));
                     }
 
                   }
