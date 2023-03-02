@@ -1,7 +1,8 @@
 import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import '../constants.dart' as Constants;
+
+//The MainScreen class has a createState method that takes an instance of State as its parameter.
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -13,39 +14,32 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery
-        .of(context)
-        .size;
+    Size size = MediaQuery.of(context).size;
 
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: NetworkImage('https://images.unsplash.com/photo-1516912481808-3406841bd33c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d2VhdGhlcnxlbnwwfHwwfHw%3D&w=1000&q=80'),
-          fit: BoxFit.cover,
-
-        )
-
-
-      ),
-
-
+          image: DecorationImage(
+        image: NetworkImage(
+            'https://images.unsplash.com/photo-1516912481808-3406841bd33c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d2VhdGhlcnxlbnwwfHwwfHw%3D&w=1000&q=80'),
+        fit: BoxFit.cover,
+      )),
       child: Stack(
-
         alignment: Alignment.center,
-      children: [
-      Positioned(
+        children: [
+          Positioned(
             top: size.height * 0.1,
             child: Row(
               children: <Widget>[
-                Text('${Constants.apiInstance.city},',
+                Text(
+                  '${Constants.apiInstance.city},',
                   style: TextStyle(
-                  decoration: TextDecoration.none,
+                    decoration: TextDecoration.none,
                     color: Colors.cyanAccent,
                     fontSize: 45,
                   ),
                 ),
-
-                Text('${Constants.apiInstance.country}',
+                Text(
+                  '${Constants.apiInstance.country}',
                   style: TextStyle(
                     decoration: TextDecoration.none,
                     color: Constants.textPrimary,
@@ -94,8 +88,7 @@ class _MainScreenState extends State<MainScreen> {
               width: size.width * 0.3,
               height: size.height * .23,
               child: Image.network(
-                  'http://openweathermap.org/img/wn/${Constants.apiInstance
-                      .icon}@2x.png'),
+                  'http://openweathermap.org/img/wn/${Constants.apiInstance.icon}@2x.png'),
             ),
           ),
           Positioned(
@@ -127,11 +120,12 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 class bottomWidget extends StatelessWidget {
-  const bottomWidget({super.key,
-    required this.name,
-    required this.value,
-    required this.icon,
-    required this.size});
+  const bottomWidget(
+      {super.key,
+      required this.name,
+      required this.value,
+      required this.icon,
+      required this.size});
 
   final String name;
   final String value;

@@ -23,8 +23,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    super.initState();
     apiCall();
+
+    super.initState();
+
   }
   void apiCall() async{
     var location = await determinePosition();
@@ -70,8 +72,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 onPressed: () async {
 
-                  final prefs = await SharedPreferences.getInstance();
-                  prefs.setBool("isLoggedIn",true);
+
+
                   try{
                     final newUser =
                     await _auth.signInWithEmailAndPassword(email: email, password: password);
@@ -86,6 +88,9 @@ class _LoginScreenState extends State<LoginScreen> {
 
                     print(e);
                   }
+                  final prefs = await SharedPreferences.getInstance();
+                  prefs.setBool("isLoggedIn",true);
+                  apiCall();
 
                 }, child: Text('Login',
                 style: TextStyle(
