@@ -3,7 +3,9 @@ import 'package:flutter/foundation.dart';
 import 'dart:convert';
 import 'dart:async';
 import 'package:intl/intl.dart';
-import 'package:untitled/constants.dart';
+import '../constants.dart';
+
+
 class SearchLocation{
 
   String key = apiKey; // openweathermap api key
