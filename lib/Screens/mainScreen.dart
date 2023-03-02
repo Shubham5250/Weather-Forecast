@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../constants.dart' as Constants;
 
 //The MainScreen class has a createState method that takes an instance of State as its parameter.
@@ -11,21 +12,54 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
+
 class _MainScreenState extends State<MainScreen> {
+
+  TimeOfDay t = TimeOfDay.now();
+
+  @override
+  void initState(){
+    super.initState();
+  }
+
+  AssetImage getImage() {
+    print(t.hour); // 20
+
+    if (t.hour >= 16 && t.hour < 18) {
+      return AssetImage('assets/images/afterevening4to6.jpg');
+    }
+    if (t.hour >= 18 && t.hour < 20) {
+      return AssetImage('assets/images/even6to9.jpg');
+    }
+    if (t.hour >= 20 && t.hour < 23) {
+      return AssetImage('assets/images/after9before12.jpeg');
+    }
+    if (t.hour >= 3 && t.hour < 8) {
+      return AssetImage('assets/images/after3before8.jpeg');
+    }
+    if(t.hour >= 8 && t.hour <11){
+      return AssetImage('assets/images/afternoon.jpg');
+    }
+    else {
+      return AssetImage('assets/images/day.jpeg');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    Size size = MediaQuery
+        .of(context)
+        .size;
 
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-        image: NetworkImage(
-            'https://images.unsplash.com/photo-1516912481808-3406841bd33c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d2VhdGhlcnxlbnwwfHwwfHw%3D&w=1000&q=80'),
-        fit: BoxFit.cover,
-            colorFilter: ColorFilter.mode(
-                Colors.white.withOpacity(0.5), BlendMode.dstATop),
+            image: getImage(),
+            fit: BoxFit.cover,
+            // colorFilter: ColorFilter.mode(
+            //     Colors.white.withOpacity(0.5), BlendMode.dstATop),
 
-      )),
+          )),
       child: Stack(
         alignment: Alignment.center,
         children: [
@@ -63,6 +97,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ),
           ),
+
           Positioned(
             top: size.height * 0.6,
             child: Text(
@@ -88,10 +123,13 @@ class _MainScreenState extends State<MainScreen> {
           Positioned(
             top: size.height * 0.3,
             child: SizedBox(
-              width: size.width * 0.3,
-              height: size.height * .23,
-              child: Image.network(
-                  'http://openweathermap.org/img/wn/${Constants.apiInstance.icon}@2x.png'),
+                width: size.width * 0.3,
+                height: size.height * .23,
+                child: Icon(
+                  Icons.sunny,
+                )
+              // child: Image.network(
+              // 'http://openweathermap.org/img/wn/${Constants.apiInstance.icon}@2x.png'),
             ),
           ),
           Positioned(
@@ -123,12 +161,11 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 class bottomWidget extends StatelessWidget {
-  const bottomWidget(
-      {super.key,
-      required this.name,
-      required this.value,
-      required this.icon,
-      required this.size});
+  const bottomWidget({super.key,
+    required this.name,
+    required this.value,
+    required this.icon,
+    required this.size});
 
   final String name;
   final String value;
