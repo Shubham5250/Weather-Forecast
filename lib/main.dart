@@ -15,7 +15,7 @@ Future<void> main() async {
   await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform );
 
-  apiCall();
+  await apiCall();
 
   runApp(MyApp(isLoggedIn: isLoggedIn));
 
