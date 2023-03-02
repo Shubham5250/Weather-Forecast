@@ -22,6 +22,9 @@ class _MainScreenState extends State<MainScreen> {
         image: NetworkImage(
             'https://images.unsplash.com/photo-1516912481808-3406841bd33c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8d2VhdGhlcnxlbnwwfHwwfHw%3D&w=1000&q=80'),
         fit: BoxFit.cover,
+            colorFilter: ColorFilter.mode(
+                Colors.white.withOpacity(0.5), BlendMode.dstATop),
+
       )),
       child: Stack(
         alignment: Alignment.center,
