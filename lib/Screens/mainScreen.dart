@@ -140,7 +140,8 @@ class _MainScreenState extends State<MainScreen> {
             height: size.height * .23,
             child: Icon(
              getIcon(),
-              size: 50,
+              color: Colors.deepOrange,
+              size: 60,
         ),
 
       ),

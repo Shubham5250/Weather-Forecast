@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/Screens/mainScreen.dart';
 import 'package:untitled/main.dart';
+import 'package:lottie/lottie.dart';
+import '../Network/Location.dart';
+import '../constants.dart' as Constants;
 
-
-// Created splash screen as a stateless widget because we are not changing a state of any widget
-///....whenever we create any button or else we create a stateful widget...
-
-
+// Future<void> main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//
+//   final prefs = await SharedPreferences.getInstance();
+//   final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
+//
+//   }
 
 class Splash extends StatefulWidget {
   const Splash({Key? key}) : super(key: key);
@@ -17,21 +22,51 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
+  int myvar = 1;
+
   @override
-  void initState(){
+  void initState() {
     super.initState();
     _navigateToLogin();
   }
 
-  _navigateToLogin() async{
+  apiCall() async {
+    var location = await determinePosition();
+
+    myvar = await Constants.apiInstance.getLocation(
+        location.latitude.toString(), location.longitude.toString());
+    print(location.latitude.toString());
+  }
+
+  _navigateToLogin() async {
     await apiCall();
     //replace the splash screen
-    Navigator.pushReplacement(this.context, MaterialPageRoute(builder: (context)=> MainScreen()));
+    Navigator.pushReplacement(
+        this.context, MaterialPageRoute(builder: (context) => MainScreen()));
   }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Lottie.asset(
+            'animations/splash.json',
+            repeat: true,
+            fit: BoxFit.cover,
+          ),
+          Text(
+            "Fetching weather data...",
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 24,
+              fontFamily: 'Ubuntu'
+            ),
+          )
+        ],
+      ),
+    );
   }
 }
-
-

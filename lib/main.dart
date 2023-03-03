@@ -10,30 +10,21 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   final prefs = await SharedPreferences.getInstance();
   final isLoggedIn = prefs.getBool('isLoggedIn') ?? false;
-
   await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform );
 
-  await apiCall();
 
-  runApp(MyApp(isLoggedIn: isLoggedIn));
+
+  runApp(MyApp());
 
 }
 
-int myvar=1;
-
-Future<void> apiCall() async {
-  var location = await determinePosition();
-
-  myvar = await Constants.apiInstance.getLocation(
-      location.latitude.toString(), location.longitude.toString());
-  print(location.latitude.toString());
-}
 class MyApp extends StatelessWidget {
-  final bool isLoggedIn;
-  const MyApp( {super.key, Splash, required this.isLoggedIn});
+  // final bool isLoggedIn;
+  const MyApp( {super.key});
 
   // This widget is the root of your application.
   @override
