@@ -3,7 +3,7 @@
 This the Weather forecast app created as a part of Flutter-Forward-Extended Bootcamp organized by GDSC-PES MCOE.
 ## Getting Started
 
-It uses the OpenWeather API that fetches the weather data. into the app.
+It uses the OpenWeather API that fetches the weather data & displays into the app.
 - Collects location of the user and gives the accurate Weather Forecast
    - Location 🎯
    - Date 📅
